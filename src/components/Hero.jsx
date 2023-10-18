@@ -26,11 +26,6 @@ const Hero = () => {
         Simplify your reading with summarize an open-source article summarizer
         that transform lengthy articles into clear and concise summaries
       </p>
-      <input
-        type="url"
-        className="bg-gray-100 w-full shadow-lg text-sm p-2 outline-none"
-        placeholder="Paste the article link"
-      />
     </header>
   );
 };
