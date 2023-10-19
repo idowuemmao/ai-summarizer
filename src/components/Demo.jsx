@@ -72,21 +72,23 @@ const Demo = () => {
           </button>
         </form>
         {/* Browser URL History */}
-        <div className="flex flex-col gap-2 max-h-52">
+        <div className="flex flex-col gap-2 max-h-60 overflow-y-auto mt-4">
           {allArticles.map((item, index) => (
             <div
-              key={`link=${index}`}
+              key={`link-${index}`}
               onClick={() => setArticle(item)}
-              className="border-4"
+              className="p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer"
             >
-              <div>
+              <div className="w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer">
                 <img
                   src={copy}
                   alt="copy_tag"
-                  className="w-2/5 h-2/5 object-contain"
+                  className="w-3/5 h-3/5 object-contain"
                 />
               </div>
-              <p className="flex-1 text-blue-700 truncate"> {item.url}</p>
+              <p className="flex-1 text-blue-700 truncate font-medium text-sm">
+                {item.url}
+              </p>
             </div>
           ))}
         </div>
@@ -99,18 +101,24 @@ const Demo = () => {
               className="w-20 h-20 object-contain"
             />
           ) : error ? (
-            <p className="font-bold text-black text-centers">
+            <p className="font-bold text-black text-center">
               Well, that wasn't supposed to happen...
-              <br /> <span>{error?.data?.error}</span>
+              <br />
+              <span className="font-normal text-gray-700">
+                {error?.data?.error}
+              </span>
             </p>
           ) : (
             article.summary && (
               <div className="flex flex-col gap-3">
                 <h2 className="font-bold text-gray-600 text-xl">
-                  Article <span className="text-blue-500">Summary</span>
+                  Article{" "}
+                  <span className="font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                    Summary
+                  </span>
                 </h2>
-                <div className="border-2">
-                  <p>{article.summary}</p>
+                <div className="rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4">
+                  <p className="text-gray-700 font-medium text-sm">{article.summary}</p>
                 </div>
               </div>
             )
