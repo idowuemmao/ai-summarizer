@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { copy, linkIcon, loader, tick } from "../assets";
-import { useLazyGetSummaryQuery } from "../article";
+import { useLazyGetSummaryQuery } from "../services/article";
 import { AiOutlineEnter } from "react-icons/ai";
 const Demo = () => {
   const [article, setArticle] = useState({
