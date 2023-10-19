@@ -38,6 +38,16 @@ const Demo = () => {
       localStorage.setItem("article", JSON.stringify(updatedAllArticle));
     }
   }
+
+  const [copied, setCopied] = useState("");
+
+  const handleCopy = (copyUrl) => {
+    setCopied(copyUrl);
+    navigator.clipboard.writeText(copyUrl);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
+  };
   return (
     <section>
       <div>
@@ -79,9 +89,12 @@ const Demo = () => {
               onClick={() => setArticle(item)}
               className="p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer"
             >
-              <div className="w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer">
+              <div
+                onClick={() => handleCopy(item.url)}
+                className="w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer"
+              >
                 <img
-                  src={copy}
+                  src={copied === item.url ? tick : copy}
                   alt="copy_tag"
                   className="w-3/5 h-3/5 object-contain"
                 />
@@ -118,7 +131,9 @@ const Demo = () => {
                   </span>
                 </h2>
                 <div className="rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4">
-                  <p className="text-gray-700 font-medium text-sm">{article.summary}</p>
+                  <p className="text-gray-700 font-medium text-sm">
+                    {article.summary}
+                  </p>
                 </div>
               </div>
             )
