@@ -8,8 +8,7 @@ const Demo = () => {
   });
 
   async function handleSubmit() {
-    // alert("submitted");
-    
+    alert("submitted");
   }
   return (
     <section>
