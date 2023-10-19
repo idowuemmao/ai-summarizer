@@ -17,7 +17,12 @@ export const articleApi = createApi({
   }),
   endpoints: (builder) => ({
     getSummary: builder.query({
-      query: (params) => "test",
+      //whenever you pass in user generated content into the url, definitely wrap it with the encodeURLComponent function
+      query: (params) =>
+        `/summarize?url=${encodeURIComponent(params.articleUrl)}&length=3`,
     }),
   }),
 });
+
+//the useLazyGetSummaryQuery allows us to fire the hook on demand not as the app loads, once the user enters the url and click the submit button
+export const { useLazyGetSummaryQuery } = articleApi;
