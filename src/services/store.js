@@ -1,4 +1,3 @@
-//
 import { configureStore } from "@reduxjs/toolkit";
 import { articleApi } from "./article";
 
